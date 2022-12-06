@@ -72,19 +72,7 @@ public class CustomerController  {
         System.out.println("inside the showform  pass" +customer.getPassword());
         return "update_customer";
     }
-//	@GetMapping("/quickpay")
-//	public String quickPayViewPage(Model model) {
-//		Long customerid = null;
-//		model.addAttribute("cutomerid",customerid);
-//		return "quickpay_form";
-//	}
-////	@PostMapping("/payquickpay")
-////	public String payBill(@ModelAttribute(name="paybill")Long customerid, Model model) {
-////		List<>
-////		if()
-////		
-////		return "pay_form";
-////	}
+
 	@GetMapping("/knowcustomerid")
 	public String knowId(Model model) {
 		model.addAttribute("customer", new Customer());
