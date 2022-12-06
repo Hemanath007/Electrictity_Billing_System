@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+		       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+		>
+<head>
+<meta charset="UTF-8">
+<title>EB Billing Management System</title>
+
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	
+</head>
+<body>
+     <br>
+	<div class="container my-2">
+			<h3>Yours Details</h3>
+		<br>
+		<br>
+		<table border="3" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>Customer Id</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Email</th>
+					<th>Phone</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="customer : ${customer}">
+					<td th:text="${customer.customerid}"></td>
+					<td th:text="${customer.name}"></td>
+					<td th:text="${customer.address}"></td>
+					<td th:text="${customer.city}"></td>
+					<td th:text="${customer.state}"></td>
+					<td th:text="${customer.email}"></td>
+					<td th:text="${customer.phone}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div><br>
+			
+	<div align="center">
+	   <form  th:action="@{/users}" method="get" id="form3">
+		</form>	
+		<form th:action="@{/users/showFormForUpdate/{id}(id=${customer.customerid})}" method="post" id="form1">
+		</form>
+		<form  th:action="@{/users/deleteCustomer/{id}(id=${customer.customerid})}" method="post" id="form2">
+		</form>	
+		<button  type="submit" form="form3" value="Back" class="btn btn-info ">Back</button>
+		<button type="submit" form="form1" value="Update"  class="btn btn-primary">Update</button>
+		<button  type="submit" form="form2" value="Delete" class="btn btn-danger ">Delete</button>
+	</div>   				
+</body>
+</html>

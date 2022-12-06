@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+  >
+<head>
+	<meta charset="ISO-8859-1">
+	<title>User Home</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<br>
+<div class="p-2 container text-center">
+	<div>
+	    
+	 <p><h4>Welcome</h4><h2> <b>[[${#request.userPrincipal.principal.fullName}]]</b> !	</h2> </p>
+		
+	</div>	
+		    <br>
+	        <br>
+		    <br>
+</div>
+<div align="center">
+	   <form  th:action="@{/userquickpay}"  method="post" id="form1">
+		</form>	
+		<form th:action="@{/users/showdetails}" method="get" id="form2">
+		</form>
+		<form  th:action="@{/users/showFormForUpdate/{id}(id=${Customer.customerid})}" method="post" id="form3">
+		</form>	
+		<form  th:action="@{/}" method="get" id="form4">
+		</form>
+		<form  th:action="@{/logout}" method="get" id="form5">
+		</form>
+	<div> 
+		<button  type="submit" form="form1" value="Pay" class="btn btn-success ">Pay Your Bill</button></div>
+	<div><br><br>
+		<button type="submit" form="form2" value="View"  class="btn btn-primary">View Your Details</button>
+		<button  type="submit" form="form3" value="Update" class="btn btn-primary">Update Your details</button>
+	</div><br><br>
+		<button  type="submit" form="form4" value="Home" class="btn btn-info ">Home</button>
+		<button  type="submit" form="form5" value="Logout" class="btn btn-warning">Log Out</button>
+</div>   
+</body>
+</html>

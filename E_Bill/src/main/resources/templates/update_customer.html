@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>EB Billing Management System</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>Customers Details update</h1>
+		<hr>
+		<h2>Update Customer</h2>
+		<form action="#" th:action="@{/saveCustomer}" th:object="${customer}" method="POST">
+			
+			<input type="hidden" th:field="*{customerid}" />
+			<input type="hidden" th:field="*{password}" />
+			
+			<input type="text" th:field="*{name}" placeholder="Customer Name"
+				class="form-control mb-4 col-4"> 
+				
+			<input type="text"
+				th:field="*{address}" placeholder="Customer Address"
+				class="form-control mb-4 col-4"> 
+				
+			<input type="text"
+				th:field="*{city}" placeholder="Customer city"
+				class="form-control mb-4 col-4">
+				
+			<input type="text"
+				th:field="*{state}" placeholder="Customer State"
+				class="form-control mb-4 col-4"> 
+				
+			<input type="text"
+				th:field="*{email}" placeholder="Customer email"
+				class="form-control mb-4 col-4"> 
+				
+			<input type="text"
+				th:field="*{phone}" placeholder="Customer Phone Number"
+				class="form-control mb-4 col-4">
+
+			<button type="submit" class="btn btn-info col-2">Update	Customer</button>
+		</form>
+		<hr>
+			<a th:href="@{/}"> Back to Home</a>
+	</div>
+</body>
+</html>
