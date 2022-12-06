@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+  >
+<head>
+	<meta charset="ISO-8859-1">
+	<title>User Home</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="p-2 container text-center">
+	<div>
+	     <p>
+			Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b> !	
+		</p>
+	</div>
+	<br>
+		    <br>
+	        <br>
+		    <br>
+		<div class="container text-center">
+				<form th:action="@{/userquickpay}" method="post">
+						<input type="submit" value="Par Your Bill" />
+			   	</form><br>
+			 	 <br><a th:href="@{/users/showdetails}" class="btn btn-primary">Show</a>
+			 	<form class="btn btn-primary" th:action="@{/users/showFormForUpdate/{id}(id=${Customer.customerid})}" method="post">
+						<input type="submit" value="Update" />
+			   	</form>
+				<br>
+			    <br>
+		</div>
+		 		 <br>
+		  		 <br>
+		<div>
+				<a th:href="@{/}" ><button class="button button4">Home</button></a>
+				<a th:href="@{/logout}" ><button class="button button4">Log Out</button></a>
+		</div>
+</div>
+</body>
+</html>
