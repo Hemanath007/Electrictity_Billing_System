@@ -11,4 +11,5 @@ public class BillController {
 		System.out.println("inside the calculator");
 		return "billcal";
 	}
+	
 }
