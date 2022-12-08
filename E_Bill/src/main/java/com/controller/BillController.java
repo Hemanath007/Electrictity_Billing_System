@@ -12,7 +12,7 @@ public class BillController {
 	@GetMapping("/billcalculator")
 	public String calculatorpage() {
 		System.out.println("inside the calculator");
-		return "billcal";
+		return "bill/billcalculation";
 	}
 	@GetMapping("/quickpay")
 	public String quickPayViewPage(Model model) {
