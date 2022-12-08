@@ -4,12 +4,60 @@
 <meta charset="UTF-8">
 <title>Bill Calculation</title>
 <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<style type="text/css">
+   legend{ font-size:18px; display:inline-block; padding-left:2px; padding-right:2px; border:none; }
+   label1{font-size: 14px;}
+</style>
 </head>
 <body>
-<h3>   Bill calculation  </h3> 
+	
+	<div align="center"><h3>Bill Calculation </h3></div>
+   
 <hr>
+<div>
+<form th:action="@{/calBill}" th:object="${billCalculator}" 
+			method="post" style="max-width: 400px; margin: 0 auto;">
+			<div class="m-3">
+  			<div class="form-group row ">
+					<label class="col-2 col-form-label">Units: </label>
+					<div class="col-6 border3">
+						<input type="number" th:field="*{units}" class="form-control" required min="1"/>
+					</div>
+				</div>
+				<div class="form-group row">
+						<label class="col-2 col-form-label" for="state">State:</label>
+							<div class="col-4">
+			    			    <select id="state" th:field="*{state}" required>
+			    			    	<option selected="selected" value=""> Select State </option>
+								      <option value="tamilnadu">Tamil Nadu</option>
+								      <option value="kerala">Kerala</option>
+								      <option value="karnataka">Karnadaka</option>
+								      <option value="pandicheri">Pandicheri</option>
+							    </select>
+							</div>
+				</div>
+			
+				<div class="">
+					<fieldset>
+						<legend><strong> Choose type of connection:</strong></legend>
+							 <input type="radio" id="house" th:field="*{ctype}" value="house" required>
+							 <label for="house">House </label><br>
+							 <input type="radio" id="domestic" th:field="*{ctype}" value="domestic">
+							 <label for="domestic">Domestic</label><br>
+							 <input type="radio" id="industry" th:field="*{ctype}" value="industry">
+							 <label for="industry">Industry</label>
+							</fieldset>
 
-<div align="center"><h3><a th:href="@{/}">Home</a></h3></div>
+				</div>
+			  <div>
+ 						 <input type="submit" value="Search">
+ 				</div>
+ 				</div>
+</form>
+</div>
+
+ <div align="center"><h3><a th:href="@{/}">Home</a></h3></div>
+
 
 </body>
 </html>

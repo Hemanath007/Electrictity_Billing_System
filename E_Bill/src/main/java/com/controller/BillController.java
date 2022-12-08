@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class BillController {
 
 	@GetMapping("/billcalculator")
-	public String calculatorpage() {
-		System.out.println("inside the calculator");
+	public String calculatorpage(Model model) {
+		BillCalculator billCalculator = new BillCalculator();
+		model.addAttribute("billCalculator", billCalculator);
+
+		return "bill/billcalculation";
+	}
+	@PostMapping("/calBill")
+	public String calMethod(BillCalculator billCalculator) {
+
+		
 		return "bill/billcalculation";
 	}
 	@GetMapping("/quickpay")
