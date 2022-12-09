@@ -13,13 +13,16 @@ public class Bill {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long customerid;
+	private int id;
 	
-	@Column(nullable = false, unique = true, length = 15)
+	@Column(name ="meterno", nullable = false, unique = true, length = 10)
+	private int meterno;
+	
+	@Column(name="month", nullable = false, length = 15)
 	private String month;
 	
-	@Column(nullable = false, length = 10)
-	private int anount;
+	@Column(name="amount", nullable = false, length = 10)
+	private int amount;
 	
 	@Column(name = "unit", nullable = false, length = 10)
 	private int unit;
@@ -31,23 +34,28 @@ public class Bill {
 		
 	}
 
-	public Bill(Long customerid, String month, int anount, int unit, String status) {
-		
-		this.customerid = customerid;
+	public Bill(int id, int meterno, String month, int amount, int unit, String status) {
+		this.id = id;
+		this.meterno = meterno;
 		this.month = month;
-		this.anount = anount;
+		this.amount = amount;
 		this.unit = unit;
 		this.status = status;
 	}
 
-	public Long getCustomerid() {
-		return customerid;
+	public int getId() {
+		return id;
 	}
 
-	public void setCustomerid(Long customerid) {
-		this.customerid = customerid;
+	public void setId(int id) {
+		this.id = id;
 	}
-
+	public int getMeterno() {
+		return meterno;
+	}
+	public void setMeterno(int meterno) {
+		this.meterno = meterno;
+	}
 	public String getMonth() {
 		return month;
 	}
@@ -56,12 +64,12 @@ public class Bill {
 		this.month = month;
 	}
 
-	public int getAnount() {
-		return anount;
+	public int getAmount() {
+		return amount;
 	}
 
-	public void setAnount(int anount) {
-		this.anount = anount;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public int getUnit() {

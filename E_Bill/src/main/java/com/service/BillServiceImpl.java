@@ -10,10 +10,10 @@ import com.repository.BillRepository;
 public class BillServiceImpl implements BillService{
 	
 	@Autowired
-	private BillRepository billRepository;
+	private BillRepository billRepo;
 	
 	@Override
-	public List<Bill> getAllBills(Long customerid){
-		return billRepository.findByCustomerid(customerid);
+	public List<Bill> getAllBills(int meterno){
+		return billRepo.findAllByMeterno(meterno);
 	}	
 }

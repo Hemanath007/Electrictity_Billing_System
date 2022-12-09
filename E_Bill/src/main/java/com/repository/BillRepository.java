@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.model.Bill;
 
 @Repository
-public interface BillRepository extends JpaRepository<Bill, Long> {
-	@Query("SELECT u FROM Bill u WHERE u.customerid = ?1")
-	public List<Bill> findByCustomerid(Long customerid);	
+public interface BillRepository extends JpaRepository<Bill, Integer> {
+	@Query("SELECT u FROM Bill u WHERE u.meterno = ?1")
+	public List<Bill> findAllByMeterno(int id);	
 }

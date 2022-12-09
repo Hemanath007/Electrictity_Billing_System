@@ -14,18 +14,25 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int customerid;
-    @Column(name = "name")
+    
+    @Column(name = "name", nullable = false, length = 25)
 	private String name;
-    @Column(name = "address")
+    
+    @Column(name = "address", nullable = false, length = 25)
 	private String address;
-    @Column(name = "state")
+    
+    @Column(name = "state", nullable = false, length = 25)
 	private String state;
-    @Column(name = "city")
+    
+    @Column(name = "city", nullable = false, length = 25)
 	private String city;
+    
     @Column(name = "email" , nullable = false, unique = true, length = 45)
     private String email;
-    @Column(name="password")
-    private String password;	
+    
+    @Column(name="password", nullable = false)
+    private String password;
+    
     @Column(name = "phone", nullable = false, unique = true, length = 10)
 	private long phone;
 
