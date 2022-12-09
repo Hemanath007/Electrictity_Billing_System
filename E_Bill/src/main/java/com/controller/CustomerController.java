@@ -3,7 +3,11 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +56,7 @@ public class CustomerController  {
 	}
 	@GetMapping("/users")
 	public String homeUsers(@AuthenticationPrincipal CustomerUserDetails user, Model model) {
-	Customer customer = customerRepository.findByEmail(user.getUsername());
+		Customer customer = customerRepository.findByEmail(user.getUsername());
 		System.out.println("inside the users" + user.getFullName());
 		System.out.println("inside the users password  " + customer.getPassword());
 		model.addAttribute("Customer",customer);
@@ -69,7 +73,7 @@ public class CustomerController  {
     public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
         Customer customer = customerRepository.findByCustomerid(id);     
         model.addAttribute("customer", customer);
-        System.out.println("inside the showform  pass" +customer.getPassword());
+        System.out.println("inside the showform  pass " +customer.getPassword());
         return "update_customer";
     }
 
