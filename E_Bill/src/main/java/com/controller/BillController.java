@@ -19,9 +19,12 @@ public class BillController {
 		return "bill/billcalculation";
 	}
 	@PostMapping("/calBill")
-	public String calMethod(BillCalculator billCalculator) {
-
-		
+	public String calMethod(BillCalculator billCalculator, Model model) {
+		float cost = billCalculator.billCalci();
+		System.out.println("cost = " +cost);
+		String c = "Your bill amount is : " +cost;
+		model.addAttribute("billCalculator", new BillCalculator());
+		model.addAttribute("cost",c);
 		return "bill/billcalculation";
 	}
 	@GetMapping("/quickpay")

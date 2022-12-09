@@ -21,7 +21,7 @@
   			<div class="form-group row ">
 					<label class="col-2 col-form-label">Units: </label>
 					<div class="col-6 border3">
-						<input type="number" th:field="*{units}" class="form-control" required min="1"/>
+						<input type="number" th:field="*{units}" class="form-control" required/>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -54,6 +54,11 @@
  				</div>
  				</div>
 </form>
+
+<h3 th:if="${cost !=null}" id="c" th:text="${cost}"  align="center">
+</h3>
+
+
 </div>
 
  <div align="center"><h3><a th:href="@{/}">Home</a></h3></div>
