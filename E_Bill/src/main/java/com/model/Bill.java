@@ -15,7 +15,7 @@ public class Bill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name ="meterno", nullable = false, unique = true, length = 10)
+	@Column(name ="meterno", nullable = false, length = 10)
 	private int meterno;
 	
 	@Column(name="month", nullable = false, length = 15)
@@ -87,6 +87,15 @@ public class Bill {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "Bill [id=" + id + ", meterno=" + meterno + ", month=" + month + ", amount=" + amount + ", unit=" + unit
+				+ ", status=" + status + "]";
+	}
 	
-	
+	public String toGetString() {
+		return "Bill [" + ", meterno=" +this.meterno + ", month=" + this.month + ", amount=" + this.amount
+				 + "]";
+	}
 }

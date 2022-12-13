@@ -3,15 +3,28 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Electricity Billing</title>
+	<title>Pay Your Bill</title>
   
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
   
 </head>
-<body class="container-fluid">
-
-
+<body class="container-fluid" style="max-width: 600px; margin: 0 auto;">
+<form th:action="@{upayquickpay}" th:object="${bill}" method="post">
+				<div class="form-group row">
+				<label class="col-4 col-form-label">Meter No: </label>
+				<div class="col-8">
+					<input type="text" th:field="*{meterno}" class="form-control" 
+							required />
+				</div>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-primary">Search</button> <hr>
+			</div>
+			
+			
+</form>
+<div> <a th:href="@{/}">Home</a></div>
 </body>
 </html>
