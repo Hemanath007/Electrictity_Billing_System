@@ -13,7 +13,13 @@ public class BillServiceImpl implements BillService{
 	private BillRepository billRepo;
 	
 	@Override
-	public List<Bill> getAllBills(int meterno){
+	public List<Bill> getNotPaidBills(int meterno){
+		String status="not paid";
+		return billRepo.findAllByMeternoAndStatus(meterno,status);
+	}
+
+	@Override
+	public List<Bill> getAllByMeterno(int meterno) {
 		return billRepo.findAllByMeterno(meterno);
 	}	
 }

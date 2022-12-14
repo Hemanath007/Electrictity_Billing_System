@@ -38,13 +38,13 @@
 		</div>
 				<br>
 				<br>
-			<div align="center" class="font-italic font-weight-bolder text-danger" th:if="${errorMessage !=null}" th:text=${errorMessage} > 
-		 	</div>
+		<div align="center" class="font-italic font-weight-bolder text-danger" th:if="${errorMessage !=null}" th:text=${errorMessage} > 
+		 </div>
 		 
-	 		<div align="center" class="font-italic font-weight-bolder text-success">
-				 <p th:if="${customerid !=null}" th:text=${customerid}></p>
-			   	 <a th:if="${customerid !=null}" th:href="@{/}" ><button class=" button button4 font-weight-bolder">Home</button></a>
-			   	 <a th:if="${customerid !=null}" th:href="@{/quickpay}" ><button class="button button5 font-weight-bolder">Pay Your Bill</button> </a>	 
-		   	</div>
+	 	<div th:if="${customerid !=null}" align="center" class="font-italic font-weight-bolder text-success">
+				 <p th:text=${customerid}></p>
+			   	 <a th:href="@{/}" ><button class=" button button4 font-weight-bolder">Home</button></a>
+			   	 <a th:href="@{/quickpay}" ><button class="button button5 font-weight-bolder">Pay Your Bill</button> </a>	 
+		 </div>
 </body>
 </html>
