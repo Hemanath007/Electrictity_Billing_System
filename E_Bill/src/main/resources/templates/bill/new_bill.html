@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Add bill</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  
+</head>
+
+<body>
+    <div class="container">
+        <h1>Admin</h1>
+        <hr>
+        <h2>Add New Bill</h2>
+
+        <form action="#" th:action="@{/admin/saveBill}" th:object="${bill}" method="POST">
+            <input type="text" th:field="*{meterno}" placeholder="Meter No" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{month}" placeholder="Month" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{amount}" placeholder="Amount" class="form-control mb-4 col-4">
+            
+             <input type="text" th:field="*{unit}" placeholder="Units" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{status}" placeholder="Status" class="form-control mb-4 col-4">
+
+            <button type="submit" class="btn btn-info col-2"> Save Bill</button>
+        </form>
+
+        <hr>
+
+        <a th:href="@{/admin/home}"> Back to Bill List</a>
+    </div>
+</body>
+
+</html>

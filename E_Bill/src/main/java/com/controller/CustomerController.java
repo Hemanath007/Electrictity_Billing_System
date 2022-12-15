@@ -2,6 +2,7 @@ package com.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -32,6 +33,11 @@ public class CustomerController  {
 	@GetMapping("")
 	public String viewHomePage() {
 		return "index";
+	}
+	@GetMapping("/login")
+	public String loginPage() {
+		System.out.println("Inside the login controller");
+		return "login";
 	}
 	
 	@GetMapping("/register")

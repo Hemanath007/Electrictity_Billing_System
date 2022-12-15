@@ -9,5 +9,11 @@ public interface BillService {
 
 	List<Bill> getAllByMeterno(int meterno);	
 	
+	List < Bill > getAllBills();
 	
+    void saveBill(Bill bill);
+    
+    Bill getBillById(int id);
+    
+    void deleteBillById(int id);
 }
