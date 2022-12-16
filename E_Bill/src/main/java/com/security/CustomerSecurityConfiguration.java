@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.service.CustomerUserDetailsService;
+import com.detailservice.CustomerUserDetailsService;
 
 @Configuration
 @Order(2)
@@ -35,19 +35,20 @@ public class CustomerSecurityConfiguration{
 	@Bean
 	public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception{
 		 http.authenticationProvider(authenticationProvider2());
-		 
-		 http.authorizeRequests()
-			.antMatchers("/users/**").authenticated()
-			.anyRequest().permitAll()
-			.and()
-			.formLogin()
-			.loginPage("/login")
-				.usernameParameter("email").passwordParameter("pass")
-				.defaultSuccessUrl("/users")
-				.permitAll()
-			.and()
-			.logout().logoutSuccessUrl("/").permitAll();
-		
-		return http.build();
-	}
+		 http.antMatcher("/customer/**")
+         .authorizeRequests().anyRequest().authenticated()
+         .and()
+         .formLogin()
+             .loginPage("/customer/login")
+             .usernameParameter("email")
+             .loginProcessingUrl("/customer/login")
+             .defaultSuccessUrl("/customer/home")
+             .permitAll()
+         .and()
+             .logout()
+                 .logoutUrl("/customer/logout")
+                 .logoutSuccessUrl("/");
+
+     return http.build();
+ }
 }

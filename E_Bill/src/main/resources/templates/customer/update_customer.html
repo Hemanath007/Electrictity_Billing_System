@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>EB Billing Management System</title>
-<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<title>EB Billing Management System</title>
+
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-	<div class="container">
-		<h1>Customers Details update</h1>
-		<hr>
-		<h2>Update Customer</h2>
-		<form action="#" th:action="@{/saveCustomer}" th:object="${customer}" method="POST">
+	<div class="container text-center">
+	<br>
+	
+		<div >
+       		 <img class="img-fluid " th:src="@{/images/ShopmeAdminBig.png}" alt="Logo"/>
+    	
+			<hr>
+			<h2>Update Customer</h2>
+		</div>
+		<div align="center"> 
+		<form th:action="@{/saveCustomer}" th:object="${customer}" method="POST" style="max-width: 800px; margin: 0 auto;">
 			
 			<input type="hidden" th:field="*{customerid}" />
 			<input type="hidden" th:field="*{password}" />
@@ -43,7 +52,8 @@
 			<button type="submit" class="btn btn-info col-2">Update	Customer</button>
 		</form>
 		<hr>
-			<a th:href="@{/}"> Back to Home</a>
+			<a th:href="@{/customer/home}"> Back</a>
+		</div>
 	</div>
 </body>
 </html>

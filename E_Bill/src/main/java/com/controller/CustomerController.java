@@ -1,28 +1,19 @@
 package com.controller;
 
-import java.util.List;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.detailservice.CustomerUserDetails;
 import com.model.*;
 import com.repository.CustomerRepository;
-import com.service.*;
-
-
 
 @Controller
 public class CustomerController  {
@@ -34,16 +25,16 @@ public class CustomerController  {
 	public String viewHomePage() {
 		return "index";
 	}
-	@GetMapping("/login")
+	@GetMapping("/customer/login")
 	public String loginPage() {
 		System.out.println("Inside the login controller");
-		return "login";
+		return "customer/customer_login";
 	}
 	
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
 		model.addAttribute("customer", new Customer());	
-		return "signup_form";
+		return "customer/signup_form";
 	}
 	
 	@PostMapping("/process_register")
@@ -60,27 +51,26 @@ public class CustomerController  {
 		customerRepository.save(customer);
         return "redirect:/login";
 	}
-	@GetMapping("/users")
+	
+	@GetMapping("/customer/home")
 	public String homeUsers(@AuthenticationPrincipal CustomerUserDetails user, Model model) {
 		Customer customer = customerRepository.findByEmail(user.getUsername());
-		System.out.println("inside the users" + user.getFullName());
-		System.out.println("inside the users password  " + customer.getPassword());
 		model.addAttribute("Customer",customer);
-		return "users_home";
+		return "customer/customer_home";
 	}
-	@GetMapping("/users/showdetails")
+	
+	@GetMapping("/customer/showdetails")
 	public String detailsUsers(@AuthenticationPrincipal CustomerUserDetails user, Model model) {
 		Customer customer = customerRepository.findByEmail(user.getUsername());
-		System.out.println("inside the show details" + user.getFullName());
 		model.addAttribute("customer",customer);
-		return "user_detail";
+		return "customer/customer_detail";
 	}
-	@PostMapping("/users/showFormForUpdate/{id}")
+	
+	@PostMapping("/customer/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
         Customer customer = customerRepository.findByCustomerid(id);     
         model.addAttribute("customer", customer);
-        System.out.println("inside the showform  pass " +customer.getPassword());
-        return "update_customer";
+        return "customer/update_customer";
     }
 
 	@GetMapping("/knowcustomerid")
@@ -88,6 +78,7 @@ public class CustomerController  {
 		model.addAttribute("customer", new Customer());
 		return "know_form";
 	}
+	
 	@PostMapping("/knowcustomerid")
 	public String knowIds(String email, Model model) {
 		Customer customer = (customerRepository.findByEmail(email));

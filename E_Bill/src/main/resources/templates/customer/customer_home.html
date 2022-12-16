@@ -13,8 +13,10 @@
 	<br>
 <div class="p-2 container text-center">
 	<div>
-	    
-	 <p><h4>Welcome</h4><h2> <b>[[${#request.userPrincipal.principal.fullName}]]</b> !	</h2> </p>
+	    <div>
+       		 <img class="img-fluid" th:src="@{/images/ShopmeAdminBig.png}" alt="Logo"/>
+    	</div>
+	  <h4>Welcome</h4><h2> <b>[[${#request.userPrincipal.principal.fullName}]]</b> !	</h2> 
 		
 	</div>	
 		    <br>
@@ -24,21 +26,23 @@
 <div align="center">
 	   <form  th:action="@{/userquickpay}"  method="post" id="form1">
 		</form>	
-		<form th:action="@{/users/showdetails}" method="get" id="form2">
+		<form th:action="@{/customer/showdetails}" method="get" id="form2">
 		</form>
-		<form  th:action="@{/users/showFormForUpdate/{id}(id=${Customer.customerid})}" method="post" id="form3">
+		<form  th:action="@{/customer/showFormForUpdate/{id}(id=${Customer.customerid})}" method="post" id="form3">
 		</form>	
-		<form  th:action="@{/}" method="get" id="form4">
+		<form  th:action="@{/customer/billhistory}" method="get" id="form4">
 		</form>
-		<form  th:action="@{/logout}" method="post" id="form5">
+		<form  th:action="@{/customer/logout}" method="post" id="form5">
 		</form>
 	<div> 
-		<button  type="submit" form="form1" value="Pay" class="btn btn-success ">Pay Your Bill</button></div>
+		<button  type="submit" form="form1" value="Pay" class="btn btn-success ">Pay Your Bill</button>
+		<button  type="submit" form="form4" value="Bill History" class="btn btn-info ">Bill History</button>
+	</div>
+		
 	<div><br><br>
 		<button type="submit" form="form2" value="View"  class="btn btn-primary">View Your Details</button>
 		<button  type="submit" form="form3" value="Update" class="btn btn-primary">Update Your details</button>
-	</div><br><br>
-		<button  type="submit" form="form4" value="Home" class="btn btn-info ">Home</button>
+	</div><br><br>		
 		<button  type="submit" form="form5" value="Logout" class="btn btn-warning">Log Out</button>
 </div>   
 </body>

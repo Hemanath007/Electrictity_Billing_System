@@ -13,6 +13,7 @@ public class AdminUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		System.out.println("inside admin load by user ");
 		Admin admin = repo.findByEmail(email);
         if (admin == null) {
             throw new UsernameNotFoundException("No user found with the given email");

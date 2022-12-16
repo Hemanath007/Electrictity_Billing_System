@@ -1,4 +1,4 @@
-package com.service;
+package com.detailservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +16,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println("Inside the customer load by username"+username);
 		Customer user = userRepo.findByEmail(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found");

@@ -1,4 +1,4 @@
-package com.service;
+package com.detailservice;
 
 import java.util.Collection;
 

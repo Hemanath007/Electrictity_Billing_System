@@ -1,4 +1,4 @@
-package com.controller;
+package com.calculation;
 
 public class BillCalculator {
 
