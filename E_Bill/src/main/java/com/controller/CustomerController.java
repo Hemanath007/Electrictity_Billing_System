@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,18 +39,22 @@ public class CustomerController  {
 	}
 	
 	@PostMapping("/process_register")
-	public String processRegister(Customer customer) {
+	public String processRegister(@ModelAttribute("customer")Customer customer,Model model) {
+		if(customerRepository.findByEmail(customer.getEmail() ) != null ){
+			model.addAttribute("customer", new Customer());	
+			return "customer/signup_form";
+		}
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(customer.getPassword());
 		customer.setPassword(encodedPassword);	
-		customerRepository.save(customer);	
-		return "register_success";
+		customerRepository.save(customer);		
+		return "register_success";		
 	}
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
 		System.out.println("inside the password" + customer.getPassword());
 		customerRepository.save(customer);
-        return "redirect:/login";
+        return "redirect:/customer/login";
 	}
 	
 	@GetMapping("/customer/home")

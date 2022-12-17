@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Bill Calculation</title>
 <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
    legend{ font-size:18px; display:inline-block; padding-left:2px; padding-right:2px; border:none; }
    label1{font-size: 14px;}
@@ -19,9 +21,10 @@
 			method="post" style="max-width: 400px; margin: 0 auto;">
 			<div class="m-3">
   			<div class="form-group row ">
-					<label class="col-2 col-form-label">Units: </label>
+					<label for="uni" class="col-2 col-form-label">Units: </label>
 					<div class="col-6 border3">
-						<input type="number" th:field="*{units}" class="form-control" required/>
+						<input type="number" class="form-control" id="uni" autocomplete="off" th:field="*{units}" min="1000" max="10000"/>
+						
 					</div>
 				</div>
 				<div class="form-group row">
@@ -43,7 +46,7 @@
 							 <input type="radio" id="house" th:field="*{ctype}" value="house" required>
 							 <label for="house">House </label><br>
 							 <input type="radio" id="domestic" th:field="*{ctype}" value="domestic">
-							 <label for="domestic">Domestic</label><br>
+							 <label for="domestic">Commercial</label><br>
 							 <input type="radio" id="industry" th:field="*{ctype}" value="industry">
 							 <label for="industry">Industry</label>
 							</fieldset>

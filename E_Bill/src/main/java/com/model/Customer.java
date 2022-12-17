@@ -15,6 +15,9 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int customerid;
     
+    @Column(name = "meterno", nullable = false, unique = true, length = 10)
+   	private long meterno;
+    
     @Column(name = "name", nullable = false, length = 25)
 	private String name;
     
@@ -35,7 +38,24 @@ public class Customer {
     
     @Column(name = "phone", nullable = false, unique = true, length = 10)
 	private long phone;
-
+    
+    public Customer() {
+    	
+    }    
+	public Customer(int customerid, long meterno, String name, String address, String state, String city, String email,
+			String password, long phone) {
+		
+		this.customerid = customerid;
+		this.meterno = meterno;
+		this.name = name;
+		this.address = address;
+		this.state = state;
+		this.city = city;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+	}
+	
 	public int getCustomerid() {
 		return customerid;
 	}
@@ -84,5 +104,13 @@ public class Customer {
 	public void setPhone(long phone) {
 		this.phone = phone;
 	}
+	
+	public long getMeterno() {
+		return meterno;
+	}
+	public void setMeterno(long meterno) {
+		this.meterno = meterno;
+	}
+	
 	
 }

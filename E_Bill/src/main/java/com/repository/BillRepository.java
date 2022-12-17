@@ -11,7 +11,7 @@ import com.model.Bill;
 @Repository
 public interface BillRepository extends JpaRepository<Bill, Integer> {
 	@Query("SELECT u FROM Bill u WHERE u.meterno = ?1")
-	public List<Bill> findAllByMeterno(int meterno);
+	public List<Bill> findAllByMeterno(long meterno);
 	
-	public List<Bill> findAllByMeternoAndStatus(int meterno, String status);
+	public List<Bill> findAllByMeternoAndStatus(long meterno, String status);
 }

@@ -15,9 +15,10 @@
 	<br>
 	
 		<div >
-       		 <img class="img-fluid " th:src="@{/images/ShopmeAdminBig.png}" alt="Logo"/>
-    	
-			<hr>
+       		 <img class="img-fluid " th:src="@{/images/logo.png}" alt="Logo"/>	
+			<br>
+		</div>
+		<div>
 			<h2>Update Customer</h2>
 		</div>
 		<div align="center"> 
@@ -28,6 +29,10 @@
 			
 			<input type="text" th:field="*{name}" placeholder="Customer Name"
 				class="form-control mb-4 col-4"> 
+				
+			<input type="text"
+				th:field="*{meterno}" placeholder="Customer Meter Number"
+				class="form-control mb-4 col-4" minlegnth="10">
 				
 			<input type="text"
 				th:field="*{address}" placeholder="Customer Address"
@@ -44,6 +49,7 @@
 			<input type="text"
 				th:field="*{email}" placeholder="Customer email"
 				class="form-control mb-4 col-4"> 
+			
 				
 			<input type="text"
 				th:field="*{phone}" placeholder="Customer Phone Number"

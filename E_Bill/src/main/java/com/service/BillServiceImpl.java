@@ -15,13 +15,13 @@ public class BillServiceImpl implements BillService{
 	private BillRepository billRepo;
 	
 	@Override
-	public List<Bill> getNotPaidBills(int meterno){
+	public List<Bill> getNotPaidBills(long meterno){
 		String status="not paid";
 		return billRepo.findAllByMeternoAndStatus(meterno,status);
 	}
 
 	@Override
-	public List<Bill> getAllByMeterno(int meterno) {
+	public List<Bill> getAllByMeterno(long meterno) {
 		return billRepo.findAllByMeterno(meterno);
 	}
 	@Override
@@ -42,7 +42,7 @@ public class BillServiceImpl implements BillService{
         if (optional.isPresent()) {
             bill = optional.get();
         } else {
-            throw new RuntimeException(" Employee not found for id :: " + id);
+            throw new RuntimeException(" Bill not found for id :: " + id);
         }
         return bill;
 	}

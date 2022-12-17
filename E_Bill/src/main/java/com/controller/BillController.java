@@ -29,7 +29,7 @@ public class BillController {
 	@PostMapping("/calBill")
 	public String calMethod(BillCalculator billCalculator, Model model) {
 		float cost = billCalculator.billCalci();		
-		String c = "Your bill amount is : " +cost;
+		String c = "Bill amount is : " +cost;
 		model.addAttribute("billCalculator", new BillCalculator());
 		model.addAttribute("cost",c);
 		return "bill/billcalculation";
@@ -50,7 +50,7 @@ public class BillController {
 	}
 	
 	@PostMapping("/quickpay")
-	public String upayBill(int meterno, Model model) {
+	public String upayBill(long meterno, Model model) {
 		
 		List<Bill> b=billService.getNotPaidBills(meterno);
 		if(b.isEmpty()) {

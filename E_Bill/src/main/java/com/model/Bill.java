@@ -16,7 +16,7 @@ public class Bill {
 	private int id;
 	
 	@Column(name ="meterno", nullable = false, length = 10)
-	private int meterno;
+	private long meterno;
 	
 	@Column(name="month", nullable = false, length = 15)
 	private String month;
@@ -34,7 +34,7 @@ public class Bill {
 		
 	}
 
-	public Bill(int id, int meterno, String month, int amount, int unit, String status) {
+	public Bill(int id, long meterno, String month, int amount, int unit, String status) {
 		this.id = id;
 		this.meterno = meterno;
 		this.month = month;
@@ -50,10 +50,10 @@ public class Bill {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getMeterno() {
+	public long getMeterno() {
 		return meterno;
 	}
-	public void setMeterno(int meterno) {
+	public void setMeterno(long meterno) {
 		this.meterno = meterno;
 	}
 	public String getMonth() {
@@ -92,10 +92,5 @@ public class Bill {
 	public String toString() {
 		return "Bill [id=" + id + ", meterno=" + meterno + ", month=" + month + ", amount=" + amount + ", unit=" + unit
 				+ ", status=" + status + "]";
-	}
-	
-	public String toGetString() {
-		return "Bill [" + ", meterno=" +this.meterno + ", month=" + this.month + ", amount=" + this.amount
-				 + "]";
 	}
 }
