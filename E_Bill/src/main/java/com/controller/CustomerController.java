@@ -6,7 +6,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +27,6 @@ public class CustomerController  {
 	}
 	@GetMapping("/customer/login")
 	public String loginPage() {
-		System.out.println("Inside the login controller");
 		return "customer/customer_login";
 	}
 	
@@ -42,6 +40,12 @@ public class CustomerController  {
 	public String processRegister(@ModelAttribute("customer")Customer customer,Model model) {
 		if(customerRepository.findByEmail(customer.getEmail() ) != null ){
 			model.addAttribute("customer", new Customer());	
+			model.addAttribute("error", "This email is alredy registered");
+			return "customer/signup_form";
+		}
+		if(customerRepository.findByPhone(customer.getPhone()) != null ){
+			model.addAttribute("customer", customer);	
+			model.addAttribute("error1", "This phone number is alredy used");
 			return "customer/signup_form";
 		}
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -52,7 +56,6 @@ public class CustomerController  {
 	}
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-		System.out.println("inside the password" + customer.getPassword());
 		customerRepository.save(customer);
         return "redirect:/customer/login";
 	}
@@ -64,9 +67,9 @@ public class CustomerController  {
 		return "customer/customer_home";
 	}
 	
-	@GetMapping("/customer/showdetails")
-	public String detailsUsers(@AuthenticationPrincipal CustomerUserDetails user, Model model) {
-		Customer customer = customerRepository.findByEmail(user.getUsername());
+	@PostMapping("/customer/showdetails/{id}")
+	public String detailsUsers(@PathVariable(value = "id") int id, Model model) {
+		Customer customer = customerRepository.findByCustomerid(id);
 		model.addAttribute("customer",customer);
 		return "customer/customer_detail";
 	}
@@ -98,5 +101,9 @@ public class CustomerController  {
 		
 		return "know_form";
 	}
-	
+	 @PostMapping("customer/deleteCustomer/{id}")
+	 public String deleteCustomer(@PathVariable(value = "id") int id) { 
+	        this.customerRepository.deleteById(id);
+	        return "redirect:/";
+	 }
 }

@@ -35,26 +35,21 @@ public class BillController {
 		return "bill/billcalculation";
 	}
 	
-	@PostMapping("/payquickpay")
-	public String payBill(@ModelAttribute(name="paybill")Long customerid, Model model) {
-		return "pay_form";
-	}
-	
 	@GetMapping("/quickpay")
 	public String quickPayViewPage(Model model) {
 		return "bill/quickpay_form";
 	}
+	
 	@PostMapping("/pay")
 	public String payPage(Model model) {
 		return "bill/pay_form";
 	}
 	
 	@PostMapping("/quickpay")
-	public String upayBill(long meterno, Model model) {
-		
+	public String payBill(long meterno, Model model) {
 		List<Bill> b=billService.getNotPaidBills(meterno);
 		if(b.isEmpty()) {
-			model.addAttribute("error", "cannot find any due");
+			model.addAttribute("error", "cannot find any due for "+meterno);
 			return "bill/quickpay_form";
 		}
 		Iterator<Bill> i = b.iterator();
@@ -67,5 +62,32 @@ public class BillController {
 		model.addAttribute("total",total);
 		return "bill/quickpay_form";
 	}
-
+	
+	@PostMapping("/customer/uquickpay")
+	public String customerPayBill(long meterno, Model model) {
+		List<Bill> b=billService.getNotPaidBills(meterno);
+		if(b.isEmpty()) {
+			model.addAttribute("error","You(" +meterno +") have no Due");
+			return "bill/customer_pay";
+		}
+		Iterator<Bill> i = b.iterator();
+		int total=0;
+		while(i.hasNext()) {
+			Bill e=i.next();
+			total= total + e.getAmount();
+		}		
+		model.addAttribute("bill",b);
+		model.addAttribute("total",total);
+		return "bill/customer_pay";
+	}
+	@GetMapping("/customer/billhistory")
+	public String billHistory(long meterno, Model model) {
+		List<Bill> b=billService.getAllByMeterno(meterno);
+		if(b.isEmpty()) {
+			model.addAttribute("error","You(" +meterno +") have no Bill History");
+			return "bill/histroy";
+		}		
+		model.addAttribute("billhistory",b);	
+		return "bill/histroy";
+	}
 }

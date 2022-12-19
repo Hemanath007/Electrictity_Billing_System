@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pay Your Bill</title>
+  
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  
+</head>
+<body class="container-fluid" style="max-width: 600px; margin: 0 auto;">
+		<br />
+		<br />
+		
+		<div align="center" class="font-italic font-weight-bolder text-success" th:if="${error !=null}" th:text=${error} > 
+		</div>
+
+		<br />
+		
+			<table th:if="${bill !=null}" border="3" class="table table-striped table-responsive-md font-weight-bolder">
+				   <tbody >   
+						<tr><th>Meter No</th><td class="text-dark" th:each="bill : ${bill}" th:text="${bill.meterno}"></td>
+						</tr>
+						<tr><th>Month</th><td class="text-primary" th:each="bill : ${bill}" th:text="${bill.month}"></td>
+						</tr>
+						<tr><th>Amount</th><td class="text-primary" th:each="bill : ${bill}" th:text="${bill.amount}"></td>
+						</tr>
+						<tr><th>Unit</th><td class="text-primary" th:each="bill : ${bill}" th:text="${bill.unit}"></td>	
+						</tr>
+				   </tbody>
+			</table>
+				<br >
+			<div th:if="${bill !=null}" align="center">
+				<h3>Pay Your Due Bill = <span th:text="${total}"></span> </h3>
+				
+				<form th:action="@{/pay}" method="post">					
+					<input class="font-weight-bolder btn btn-success" type="submit" value="Pay">(click to pay)
+				</form>
+				<hr>
+				<br>
+			</div>
+		<div align="center">
+			<form  th:action="@{/customer/home}" method="get" id="form1">
+			</form>
+			<form th:action="@{/customer/billhistory}" method="get" id="form2" th:each="bill : ${bill}">			
+			</form>
+			<form  th:action="@{/customer/logout}" method="post" id="form3">
+			</form>
+			<button  type="submit" form="form1" class="btn btn-success" value="Home">Back</button><span>&ensp; </span>
+			<button th:if="${bill !=null}" type="submit" form="form2" class="btn btn-info" name="meterno"  th:value="${bill.get(0).meterno}" >Bill History</button><span>&ensp; </span>
+			<button  type="submit" form="form3" value="Logout" class="btn btn-warning">Log Out</button>
+		 </div>
+</body>
+</html>

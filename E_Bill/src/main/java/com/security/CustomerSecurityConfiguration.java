@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.detailservice.CustomerUserDetailsService;
 
 @Configuration
-@Order(2)
+@Order(1)
 public class CustomerSecurityConfiguration{
 	 
 	@Bean
@@ -23,14 +23,14 @@ public class CustomerSecurityConfiguration{
 	public BCryptPasswordEncoder passwordEncoder2() {
 		return new BCryptPasswordEncoder();
 	}
-	  @Bean
-	    public DaoAuthenticationProvider authenticationProvider2() {
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider2() {
 	        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 	        authProvider.setUserDetailsService(customerUserDetailsService());
 	        authProvider.setPasswordEncoder(passwordEncoder2());
 	 
 	        return authProvider;
-	    }
+	}
 	
 	@Bean
 	public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception{

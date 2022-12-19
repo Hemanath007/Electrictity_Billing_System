@@ -24,9 +24,9 @@ public class AdminController {
      
     @GetMapping("/admin/home")
     public String viewAdminHomePage(Model model) {
-    	System.out.println("inside the admin home");
     	 model.addAttribute("listBills", billService.getAllBills());
-        return "admin/admin_home";
+    	 
+    	 return "admin/admin_home";
     }
     
     @GetMapping("/admin/showNewBillForm")
@@ -50,7 +50,7 @@ public class AdminController {
     }
 
     @GetMapping("admin/deleteBill/{id}")
-    public String deleteEmployee(@PathVariable(value = "id") int id) { 
+    public String deleteBill(@PathVariable(value = "id") int id) { 
         this.billService.deleteBillById(id);
         return "redirect:/admin/home";
     }

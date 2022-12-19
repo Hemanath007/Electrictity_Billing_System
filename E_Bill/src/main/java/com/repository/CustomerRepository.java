@@ -16,5 +16,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	
 	@Query("SELECT u FROM Customer u WHERE u.customerid = ?1")
 	public Customer findByCustomerid(int id);
+	
+	@Query("SELECT u FROM Customer u WHERE u.phone = ?1")
+	public Customer findByPhone(long phone);
 }
 

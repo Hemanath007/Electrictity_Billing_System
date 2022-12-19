@@ -11,27 +11,27 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.detailservice.AdminUserDetailsService;
 
 @Configuration
-@Order(1)
+@Order(2)
 public class AdminSecurityConfig {
 
 	
 	@Bean
-	public UserDetailsService adminDetailsService() {
+	public UserDetailsService adminUserDetailsService() {
 		return new AdminUserDetailsService();
-	}
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
 	}
 	
 	@Bean
-    public DaoAuthenticationProvider authenticationProvider1() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(adminDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
- 
-        return authProvider;
-    }
+	public BCryptPasswordEncoder passwordEncoder1() {
+		return new BCryptPasswordEncoder();
+	}
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider1() {
+	        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+	        authProvider.setUserDetailsService(adminUserDetailsService());
+	        authProvider.setPasswordEncoder(passwordEncoder1());
+	 
+	        return authProvider;
+	}
 	@Bean
     public SecurityFilterChain filterChain1(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider1());
@@ -51,7 +51,6 @@ public class AdminSecurityConfig {
             .logout()
                 .logoutUrl("/admin/logout")
                 .logoutSuccessUrl("/");
- 
         return http.build();
     }
 }

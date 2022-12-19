@@ -24,9 +24,10 @@
 		    <br>
 </div>
 <div align="center">
-	   <form  th:action="@{/userquickpay}"  method="post" id="form1">
+	   <form  th:action="@{/customer/uquickpay}" method="post" id="form1">
 		</form>	
-		<form th:action="@{/customer/showdetails}" method="get" id="form2">
+		<form th:action="@{/customer/showdetails/{id}(id=${Customer.customerid})}" method="post" id="form2">
+			
 		</form>
 		<form  th:action="@{/customer/showFormForUpdate/{id}(id=${Customer.customerid})}" method="post" id="form3">
 		</form>	
@@ -35,8 +36,8 @@
 		<form  th:action="@{/customer/logout}" method="post" id="form5">
 		</form>
 	<div> 
-		<button  type="submit" form="form1" value="Pay" class="btn btn-success ">Pay Your Bill</button>
-		<button  type="submit" form="form4" value="Bill History" class="btn btn-info ">Bill History</button>
+		<button  type="submit" form="form1" name="meterno" th:value="${Customer.meterno}" class="btn btn-success ">Pay Your Bill</button>
+		<button  type="submit" form="form4" name="meterno" th:value="${Customer.meterno}" class="btn btn-info ">Bill History</button>
 	</div>
 		
 	<div><br><br>

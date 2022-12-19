@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome to Admin Control Panel</title>
@@ -9,6 +10,7 @@
 </head>
 <body>
     <div align="center">
+    <br>
         <h2>Welcome to Admin Control Panel</h2>
         <p>Your user name is: <b>[[${#request.userPrincipal.principal.username}]]</b></p>
         <form th:action="@{/admin/logout}" method="post">
