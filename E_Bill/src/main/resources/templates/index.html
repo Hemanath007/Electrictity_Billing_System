@@ -8,17 +8,52 @@
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-  
+  <style>
+		body {
+		  background:url('/images/back.jpg');
+		  background-repeat: no-repeat;
+		  background-attachment: fixed;
+		  background-size: 100% 100%;
+		  
+		} 
+      .container {
+        display: flex;
+        align-items: center;
+        
+      }
+      img {		
+         max-width: 100%
+      }
+      .image {
+     
+        flex-basis: 40%
+      }
+      .text {
+        font-size: 20px;
+        padding-left: 20px;
+        color: rgb(255, 255, 255);
+        font-style: italic;
+        font-family:verdana;
+      }
+    </style>
+
 </head>
 <body class="container-fluid">
+<br>
+<div class="container">
+      <div class="image">
+        <img th:src="@{/images/logo.png}" alt="logo">
+      </div>
+      <div class="text">
+        <h1>Electricity Billing </h1>
+      </div>
+    </div>
 
-<div class="col">
-	<img alt="logo" th:src="@{/images/elec.png}" width="300" height="100" />
-	<div align="center">
-	<h1>Electricity billing system</h1></div>
-</div>
-  <br>
+	
+
+  		<br>
 		<hr>
+<div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" th:href="@{/}">Home</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,21 +63,24 @@
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto">
 		      <li class="nav-item active">
-		        <a class="nav-link"  th:href="@{/customer/login}"><b>&ensp;User:</b><br><span>&nbsp;(login)</span></a>
+		        <a class="nav-link"  th:href="@{/customer/login}"><h2><b>&ensp;User</b><br></h2><span>&nbsp; &ensp; (login)</span></a>
 		      </li>		     
 		      <li class="nav-item active">
-		        <a class="nav-link" th:href="@{/register}"><b>Register</b></a>
+		        <a class="nav-link" th:href="@{/register}"><b><h2>Register</h2></b></a>
+		      </li>
+		      <li class="nav-item active">
+		     	 <a class="nav-link" th:href="@{/billcalculator}"><b><h2> Bill Calculator</h2></b></a>
 		      </li>
 		      <li class="nav-item dropdown active">
 		        <a class="nav-link dropdown-toggle" th:href="@{/quickpay}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		         <b> Payments </b> 
+		         <b><h2>Payments </h2>  </b> 
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		          <a class="dropdown-item" th:href="@{/quickpay}"><b>Quick Pay </b></a>
 		          	<div class="dropdown-divider"></div>
 		          <a class="dropdown-item" th:href="@{/knowcustomerid}"><b>Know your customer id</b></a>
-		         	 <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" th:href="@{/billcalculator}"><b>Bill Calculator</b></a>
+<!-- 		         	 <div class="dropdown-divider"></div> -->
+<!-- 		          <a class="dropdown-item" th:href="@{/billcalculator}"><b>Bill Calculator</b></a> -->
 		        </div>
 		      </li>
 		      
@@ -50,9 +88,12 @@
 		    <a class="form-inline my-2 my-lg-0" th:href="@{/admin/login}">
 <!-- 		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> 
 		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-		       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Admin</button>
+		       <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><h2>Admin </h2> </button>
 		    </a>	    
 		  </div>
 </nav>
+<hr>
+</div>
+
 </body>
 </html>
