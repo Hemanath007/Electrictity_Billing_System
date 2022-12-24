@@ -47,9 +47,8 @@
 				<br >
 			<div th:if="${bill !=null}" align="center">
 				<h3>Pay Your Due Bill = <span th:text="${total}"></span> </h3>
-				<form th:action="@{/pay}" method="post">
-					
-					<input class="font-weight-bolder btn btn-success" type="submit" value="Pay">(click to pay)
+				<form th:action="@{/pay}" th:object="${newbill}" method="post">
+					<button type="submit" class="font-weight-bolder btn btn-success" th:field="${newbill}">pay</button>(click to pay)
 				</form>
 				<hr>
 				<br>

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.model.Bill;
+import com.model.Customer;
+import com.repository.CustomerRepository;
 import com.service.BillService;
 
 @Controller
@@ -16,6 +18,9 @@ public class AdminController {
 
     @Autowired
     private BillService billService;
+    
+    @Autowired
+    private CustomerRepository customerRepo;
     
 	@GetMapping("/admin/login")
     public String viewAdminLoginPage() {
@@ -54,4 +59,27 @@ public class AdminController {
         this.billService.deleteBillById(id);
         return "redirect:/admin/home";
     }
+    
+    @GetMapping("/admin/showCustomerDetails")
+    public String showCustomerDetails(Model model) {
+    	model.addAttribute("listcustomers", customerRepo.findAll());
+    	return "admin/admin_home2";
+    }
+    @GetMapping("/admin/showCustomerFormForUpdate/{id}")
+    public String showCustomerFormForUpdate(@PathVariable(value = "id") int id, Model model) {
+        Customer customer = customerRepo.findByCustomerid(id);     
+        model.addAttribute("customer", customer);
+        return "admin/update_customer";
+    }
+   
+    @PostMapping("/admin/saveCustomer")
+	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+		customerRepo.save(customer);
+        return "redirect:/admin/showCustomerDetails";
+	}
+    @GetMapping("admin/deleteCustomer/{id}")
+	 public String deleteCustomer(@PathVariable(value = "id") int id) {
+	        this.customerRepo.deleteById(id);
+	        return "redirect:/admin/showCustomerDetails";
+	 }
 }

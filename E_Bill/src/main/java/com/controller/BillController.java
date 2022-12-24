@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.calculation.BillCalculator;
 import com.model.Bill;
+import com.model.Customer;
 import com.service.BillService;
 
 @Controller
@@ -41,24 +42,35 @@ public class BillController {
 	}
 	
 	@PostMapping("/pay")
-	public String payPage(Model model) {
+	public String payPage(@ModelAttribute("newbill") Bill newbill,Model model) {
+		System.out.println("Inside the pay =" +newbill.toString());
+		model.addAttribute("bill",newbill);
+		return "bill/pay_form";
+	}
+	@PostMapping("/paypaid")
+	public String payPagePaid(@ModelAttribute("newbill")Bill bill,Model model) {
+		System.out.println(bill.toString()); 
+		bill.setStatus("Paid");
+		billService.saveBill(bill);
+		model.addAttribute("status", "paid");
 		return "bill/pay_form";
 	}
 	
 	@PostMapping("/quickpay")
 	public String payBill(long meterno, Model model) {
-		List<Bill> b=billService.getNotPaidBills(meterno);
-		if(b.isEmpty()) {
+		List<Bill> bill=billService.getNotPaidBills(meterno);
+		if(bill.isEmpty()) {
 			model.addAttribute("error", "cannot find any due for "+meterno);
 			return "bill/quickpay_form";
 		}
-		Iterator<Bill> i = b.iterator();
+		Iterator<Bill> i = bill.iterator();
 		int total=0;
 		while(i.hasNext()) {
 			Bill e=i.next();
 			total= total + e.getAmount();
 		}		
-		model.addAttribute("bill",b);
+		model.addAttribute("bill",bill);
+		model.addAttribute("newbill",bill);
 		model.addAttribute("total",total);
 		return "bill/quickpay_form";
 	}
