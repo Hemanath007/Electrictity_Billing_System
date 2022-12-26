@@ -45,11 +45,13 @@
 				   </tbody>
 			</table>
 				<br >
-			<div th:if="${bill !=null}" align="center">
+			<div th:if="${bill !=null}" align="center" th:object="${meterno}">
 				<h3>Pay Your Due Bill = <span th:text="${total}"></span> </h3>
-				<form th:action="@{/pay}" th:object="${newbill}" method="post">
-					<button type="submit" class="font-weight-bolder btn btn-success" th:field="${newbill}">pay</button>(click to pay)
+				<br>
+				<form th:action="@{/pay/{id}(id=${meterno})}" method="get" id="form1">
 				</form>
+				<button type="submit" form="form1" value="Update"  class="btn btn-success">pay</button>
+				
 				<hr>
 				<br>
 			</div>

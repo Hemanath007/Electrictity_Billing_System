@@ -14,11 +14,14 @@
 
 	<h1> redirecting paytm</h1>
 	
-	<div align="center" th:if="${status ==null}">
+	<div align="center" th:if="${status ==null}" th:>
 	<h3>Click to Pay</h3>
 		<form th:action="@{/paypaid}" th:object="${bill}" method="post">	
 				<button type="submit" class="btn btn-info col-2">pay</button>
 		</form>
+		<form th:action="@{/paypaid/{id}(id=${bill.meterno})}" method="post" id="form1">
+				</form>
+				<button type="submit" form="form1" value="Update"  class="btn btn-success">pay</button>
 	</div>
 	<div align="center" th:if="${status !=null}"> 
 		<h1>Payment done successfully</h1>

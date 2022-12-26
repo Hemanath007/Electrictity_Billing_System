@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.calculation.BillCalculator;
@@ -40,18 +41,26 @@ public class BillController {
 	public String quickPayViewPage(Model model) {
 		return "bill/quickpay_form";
 	}
-	
-	@PostMapping("/pay")
-	public String payPage(@ModelAttribute("newbill") Bill newbill,Model model) {
-		System.out.println("Inside the pay =" +newbill.toString());
-		model.addAttribute("bill",newbill);
+	@GetMapping("/pay/{id}")
+	public String payPagea(@PathVariable(value = "id")long meterno,Model model) {
+		System.out.println("Inside the pay =" +meterno);
+		List<Bill> bill=billService.getNotPaidBills(meterno);
+			
+		model.addAttribute("bill",bill);
 		return "bill/pay_form";
 	}
-	@PostMapping("/paypaid")
-	public String payPagePaid(@ModelAttribute("newbill")Bill bill,Model model) {
-		System.out.println(bill.toString()); 
-		bill.setStatus("Paid");
-		billService.saveBill(bill);
+	
+	@PostMapping("/paypaid/{id}")
+	public String payPagePaid(@PathVariable(value = "id")long meterno,Model model) {
+		System.out.println("Inside the paypaid =" +meterno);
+		List<Bill> bill=billService.getNotPaidBills(meterno);
+		Iterator<Bill> i = bill.iterator();		
+		while(i.hasNext()) {
+			Bill e=i.next();
+			e.setStatus("Paid");
+			billService.saveBill(e);
+		}
+		System.out.println("Updated");
 		model.addAttribute("status", "paid");
 		return "bill/pay_form";
 	}
@@ -70,7 +79,7 @@ public class BillController {
 			total= total + e.getAmount();
 		}		
 		model.addAttribute("bill",bill);
-		model.addAttribute("newbill",bill);
+		model.addAttribute("meterno",meterno);
 		model.addAttribute("total",total);
 		return "bill/quickpay_form";
 	}
