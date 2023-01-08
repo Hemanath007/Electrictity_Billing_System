@@ -11,17 +11,24 @@
   
 </head>
 <body class="container-fluid">
-
-	<h1> redirecting paytm</h1>
-	
+	<div align="center">
+		<h1>Payment Page</h1>
+		<br>
+		<br>
+	</div>
 	<div align="center" th:if="${status ==null}">
-	<h3>Click to Pay</h3>
-		<form th:action="@{/paypaid}" th:object="${bill}" method="post">	
-				<button type="submit" class="btn btn-info col-2">pay</button>
+		<h1> redirecting paytm</h1>
+		<br>
+		<br>
+		<a th:href="@{/}">Go back to home</a>
+		<br>
+		<br>
+	</div>
+	<div align="center" th:if="${status ==null}">
+		<h3>Click to Change Status to Paid(For Demo purpose)</h3>
+		<form th:action="@{/paypaid/{id}(id=${meterno})}" method="get" id="form1">
 		</form>
-		<form th:action="@{/paypaid/{id}(id=${bill.meterno})}" method="post" id="form1">
-				</form>
-				<button type="submit" form="form1" value="Update"  class="btn btn-success">pay</button>
+		<button type="submit" form="form1" class="btn btn-success">paid</button>
 	</div>
 	<div align="center" th:if="${status !=null}"> 
 		<h1>Payment done successfully</h1>

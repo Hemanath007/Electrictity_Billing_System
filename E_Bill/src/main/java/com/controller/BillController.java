@@ -47,10 +47,11 @@ public class BillController {
 		List<Bill> bill=billService.getNotPaidBills(meterno);
 			
 		model.addAttribute("bill",bill);
+		model.addAttribute("meterno",meterno);
 		return "bill/pay_form";
 	}
 	
-	@PostMapping("/paypaid/{id}")
+	@GetMapping("/paypaid/{id}")
 	public String payPagePaid(@PathVariable(value = "id")long meterno,Model model) {
 		System.out.println("Inside the paypaid =" +meterno);
 		List<Bill> bill=billService.getNotPaidBills(meterno);

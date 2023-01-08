@@ -34,10 +34,9 @@
 				<br >
 			<div th:if="${bill !=null}" align="center">
 				<h3>Pay Your Due Bill = <span th:text="${total}"></span> </h3>
-				
-				<form th:action="@{/pay}" method="post">					
-					<input class="font-weight-bolder btn btn-success" type="submit" value="Pay">(click to pay)
+				<form th:action="@{/pay/{id}(id=${bill.get(0).meterno})}" method="get" id="form5">
 				</form>
+				<button type="submit" form="form5" class="font-weight-bolder btn btn-success">Pay</button>
 				<hr>
 				<br>
 			</div>
